@@ -32,7 +32,7 @@ public class ExpensesTest {
     public void testConstructorInvalidAmount() {
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 new Expense(null, "Test expense"));
-        assertEquals("Amount must be greater than zero", exception.getMessage());
+        assertEquals("The amount can't be null or 0.", exception.getMessage());
 
         exception = assertThrows(IllegalArgumentException.class, () ->
                 new Expense(BigDecimal.ZERO, "Test expense"));
@@ -43,11 +43,11 @@ public class ExpensesTest {
     public void testConstructorInvalidDescription() {
         Exception exception = assertThrows(IllegalArgumentException.class, () ->
                 new Expense(new BigDecimal("100.00"), null));
-        assertEquals("Description cannot be null or empty", exception.getMessage());
+        assertEquals("The description cannot be null or empty.", exception.getMessage());
 
         exception = assertThrows(IllegalArgumentException.class, () ->
                 new Expense(new BigDecimal("100.00"), ""));
-        assertEquals("Description cannot be null or empty", exception.getMessage());
+        assertEquals("The description cannot be null or empty.", exception.getMessage());
     }
 
     @Test

@@ -35,9 +35,15 @@ public class Expense {
     private Category category;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt = LocalDateTime.now();
+    private final LocalDateTime createdAt;
 
     public Expense(BigDecimal amount, String description) {
+        if (amount == null || amount.equals(new BigDecimal("00.00"))) {
+            throw new IllegalArgumentException("The amount can't be null or 0.");
+        }
+        if (description == null || description.trim().isEmpty()) {
+            throw new IllegalArgumentException("The description cannot be null or empty.");
+        }
         setAmount(amount);
         setDescription(description);
         this.createdAt = LocalDateTime.now();
