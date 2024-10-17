@@ -47,6 +47,7 @@ public class UserTest {
         assertEquals("email@example.com", foundUser.get().getEmail());
         assertEquals("password", foundUser.get().getPassword());
     }
+
     @Test
     void findByEmail() {
         when(userRepository.findByEmail("email@example.com")).thenReturn(Optional.of(testUser));
